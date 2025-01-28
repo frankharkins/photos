@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&family=Source+Code+Pro:wght@400;700&display=swap');
+
+.mono {
+  font-family: 'Source Code Pro', Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+}
+
+:root {
+  font-family: 'Source Code Pro', Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 18px;
+  color-scheme: only dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  --color-black: #0d1117;
+  --color-white: #ecf2f8;
+  --color-grey: #57606a;
+  --color-cursor: #58a6ff;
+  --color-blue: #0969da;
+  --color-cyan: #56d4dd;
+
+  --color-title: var(--color-white);
+  --color-bg: var(--color-black);
+  --color-body: var(--color-grey);
+  --color-link: var(--color-cyan);
+  --color-focus: var(--color-cyan);
+  --color-cursor: var(--color-cyan);
+
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  color: var(--color-body);
+  background-color: var(--color-bg);
+  transition: background 0.2s ease;
+}
+
+h1, h2, h3 {
+  color: var(--color-title);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+img.thumb {
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  margin: -1px;
+}
+
+img.thumb:hover {
+    border: 2px solid var(--color-focus);
+}
+
+h3 {
+  font-weight: normal;
+}
+
+p+h3 {
+  margin-top: 2rem;
+}
+
+a {
+  color: var(--color-link);
+  transition: background 0.2s ease;
+}
+
+*:focus {
+  outline: solid var(--color-focus) 1px;
+  outline-offset: 1px;
+}
+
+a:hover, a:focus {
+  color: var(--color-bg);
+  background: var(--color-link);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding-left: 1.2rem;
+}
+
+ul li:before {
+  content: '- ';
+  margin-left: -1rem;
+}
+
+p {
+  max-width: 32rem;
+  font-size: 1rem;
+  font-family: Karla;
+  margin: .5rem 0;
+  text-align: justify;
+}
+
+div.image-modal {
+    position: fixed;
+    z-index: 1;
+    background-color: var(--color-bg);
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+div.image-modal figure {
+    max-height: 90vh;
+    max-width: 90vw;
+    margin: auto;
+}
+
+@media screen and (max-width: 850px) {
+    div.image-modal figure {
+        margin-top: 4lh;
+    }
+}
+
+div.image-modal figure img {
+    max-width: 90vw;
+    max-height: calc(90vh - 7lh);
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+}
+
+div.image-modal figure figcaption {
+    margin-top: 1rem;
+    height: 3lh;
+}
+
+div.image-modal figure .modal-nav span:is(.next,.close,.previous):hover {
+    cursor: pointer;
+    color: var(--color-link);
+}
+
+div.image-modal figure .modal-nav span.next::after {
+    content: " ->"
+}
+
+div.image-modal figure .modal-nav span.next:hover::after {
+    content: " =>"
+}
+
+div.image-modal figure .modal-nav span.previous::before {
+    content: "<- "
+}
+
+div.image-modal figure .modal-nav span.previous:hover::before {
+    content: "<= "
+}
+
+p:last-of-type {
+  margin-bottom: 2rem;
+}
+
+figure.photo-group {
+    margin: 0;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 4rem;
+    margin-bottom: 4px;
+}
+
+figcaption {
+    color: var(--color-title);
+    font-weight: bold;
+    margin-top: 4px;
+    min-height: 2lh;
+}
+
+figcaption div.text-secondary {
+    color: var(--color-body);
+    font-weight: normal;
+    overflow-y: visible;
+}
+
+div.thumbnails figcaption div.text-secondary {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#app {
+  width: 80%;
+  margin: 8vw;
+  padding: 2rem 2rem;
+}
+
+@media screen and (max-width: 600px) {
+  #app {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}

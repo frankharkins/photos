@@ -12,7 +12,7 @@ elm make src/Main.elm --output=main.js
 Or, rebuild on file change:
 
 ```sh
-while inotifywait -e close_write src/Main.elm; do elm make src/Main.elm --output=main.js; done
+while inotifywait -e close_write src/Main.elm; do elm make src/Main.elm --output=static/main.js; done
 ```
 
 ## Add files to the page.

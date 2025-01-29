@@ -8,7 +8,7 @@
 :root {
   font-family: 'Source Code Pro', Helvetica, Arial, sans-serif;
   font-size: 17px;
-  line-height: 18px;
+  line-height: 22px;
   color-scheme: only dark;
 
   font-synthesis: none;
@@ -191,10 +191,8 @@ figcaption div.text-secondary {
     overflow-y: visible;
 }
 
-div.thumbnails figcaption div.text-secondary {
+figure.photo-group figcaption div.text-secondary {
     position: absolute;
-    left: 0;
-    top: 0;
 }
 
 #app {

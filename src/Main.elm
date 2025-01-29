@@ -354,8 +354,7 @@ image_modal selected_image =
           img [ src (get_path "full-res" image) ] [ ],
           figcaption [] [
             text image.title,
-            div [ class "text-secondary" ] [ text image.description ],
-            div [ class "text-secondary" ] [ text ("Group: " ++ image.group) ]
+            div [ class "text-secondary" ] [ text image.description ]
           ],
           modal_nav image
       ]]]

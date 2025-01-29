@@ -29,5 +29,4 @@ while inotifywait -e close_write src/Main.elm; do elm make src/Main.elm --output
 
 * Accessibility / keyboard navigation
 * Look into progressive encoding JPEG for the medium/high res images.
-* Implement https://guide.elm-lang.org/optimization/asset_size on deploy
 * Clean up Elm code

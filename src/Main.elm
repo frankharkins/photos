@@ -3,7 +3,7 @@ module Main exposing (..)
 import Browser
 import Html exposing (Html, h1, p, div, span, text, img, figure, figcaption)
 import Html.Events exposing (onClick)
-import Html.Attributes exposing (class, id, src, tabindex, style)
+import Html.Attributes exposing (class, id, src, tabindex)
 import Html.Events exposing (onMouseEnter, onMouseLeave, onClick)
 import Html.Events exposing (stopPropagationOn)
 import Json.Decode as Json
@@ -149,6 +149,46 @@ image_groups = [
       }
     ]
   },
+  { name = "Macro",
+    description = "Using a home-made bellows system, inspired by Karl Blossfeldt. This stuff if hard.",
+    images = [
+      { filename = "mushroom-1",
+        title = "Mushroom #1",
+        description = "",
+        group = "Macro"
+      },
+      { filename = "mushroom-2",
+        title = "Mushroom #2",
+        description = "",
+        group = "Macro"
+      },
+      { filename = "mushroom-3",
+        title = "Mushroom #3",
+        description = "",
+        group = "Macro"
+      }
+    ]
+  },
+  { name = "Aquarium",
+    description = "Trip to Sea Life aquarium, London",
+    images = [
+      { filename = "clownfish",
+        title = "Clownfish",
+        description = "The clownfish were beautiful, would recommend",
+        group = "Aquarium"
+      },
+      { filename = "otherfish",
+        title = "Blue fish",
+        description = "No idea what kind of fish these are",
+        group = "Aquarium"
+      },
+      { filename = "jellyfish",
+        title = "Jellyfish",
+        description = "Japanese Sea Nettle",
+        group = "Aquarium"
+      }
+    ]
+  },
   { name = "Lagos",
     description = "Snapshots from a holiday to Portugal",
     images = [
@@ -191,6 +231,21 @@ image_groups = [
         title = "#8",
         description = "",
         group = "Lagos"
+      }
+    ]
+  },
+  { name = "Cyanotypes",
+    description = "Scans of small prints made using the cyanotype technique",
+    images = [
+      { filename = "cyanotype-1",
+        title = "Autumn willow",
+        description = "Near Poynton Pool. A red filter renders yellow leaves white and others dark.",
+        group = "Cyanotypes"
+      },
+      { filename = "cyanotype-2",
+        title = "Tree on Wandsworth common",
+        description = "In the fog",
+        group = "Cyanotypes"
       }
     ]
   }]

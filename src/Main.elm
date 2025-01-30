@@ -189,6 +189,31 @@ image_groups = [
       }
     ]
   },
+  { name = "London brutalism",
+    description = "From a tour of brutalist architecture in London",
+    images = [
+      { filename = "alexandra-road-estate",
+        title = "Alexandra Road Estate",
+        description = "",
+        group = "London brutalism"
+      },
+      { filename = "alexandra-road-estate-2",
+        title = "Stairs",
+        description = "Also at Alexandra Road Estate",
+        group = "London brutalism"
+      },
+      { filename = "royal-college-physicians",
+        title = "Royal College of Physicians",
+        description = "",
+        group = "London brutalism"
+      },
+      { filename = "southbank-centre",
+        title = "Southbank Centre",
+        description = "Featuring light leaks",
+        group = "London brutalism"
+      }
+    ]
+  },
   { name = "Lagos",
     description = "Snapshots from a holiday to Portugal",
     images = [

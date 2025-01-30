@@ -6,7 +6,7 @@ experiment with Elm.
 ## Build the project
 
 ```sh
-elm make src/Main.elm --output=main.js
+elm make src/Main.elm --output=static/main.js
 ```
 
 Or, rebuild on file change:

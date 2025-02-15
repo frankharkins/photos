@@ -21,7 +21,7 @@ position image image_list =
     else
       Neither
 
-get_by_index : List Image -> Int -> Maybe Image
+get_by_index : List a -> Int -> Maybe a
 get_by_index list index =
   let maybe_tuple = List.head (List.filter (\element -> Tuple.first element == index) (List.indexedMap Tuple.pair list))
   in
@@ -29,22 +29,19 @@ get_by_index list index =
     Just element -> Just (Tuple.second element)
     _ -> Nothing
 
-get_index : Image -> List Image -> Maybe Int
-get_index image image_list =
-  let maybe_index_and_image = List.head (List.filter (\i -> Tuple.second i == image) (List.indexedMap Tuple.pair image_list))
+get_index : a -> List a -> Maybe Int
+get_index element list =
+  let maybe_index_and_element = List.head (List.filter (\e -> Tuple.second e == element) (List.indexedMap Tuple.pair list))
   in
-    case maybe_index_and_image of
+    case maybe_index_and_element of
       Nothing -> Nothing
-      Just index_and_image -> Just (Tuple.first index_and_image)
+      Just index_and_element -> Just (Tuple.first index_and_element)
 
 type RelativePosition = Previous | Next
-get_sibling : Image -> List Image -> RelativePosition -> Image
-get_sibling image image_list relative_position =
+get_sibling : a -> List a -> RelativePosition -> Maybe a
+get_sibling element list relative_position =
   let offset = if relative_position == Previous then -1 else 1
   in
-  case (get_index image image_list) of
-    Nothing -> image
-    Just index ->
-      case get_by_index image_list (index + offset) of
-        Nothing -> image
-        Just next_image -> next_image
+  case (get_index element list) of
+    Nothing -> Nothing
+    Just index -> get_by_index list (index + offset)

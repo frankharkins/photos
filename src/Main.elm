@@ -55,11 +55,17 @@ update msg model =
     EnterModal image -> ModalImage image
     PreviousModal ->
       case model of
-        ModalImage image -> ModalImage (get_sibling image all_images Previous)
+        ModalImage image ->
+          case (get_sibling image all_images Previous) of
+            Nothing -> ModalImage image
+            Just new_image -> ModalImage new_image
         _ -> model
     NextModal ->
       case model of
-        ModalImage image -> ModalImage (get_sibling image all_images Next)
+        ModalImage image ->
+          case (get_sibling image all_images Next) of
+            Nothing -> ModalImage image
+            Just new_image -> ModalImage new_image
         _ -> model
     ExitHover ->
       case model of

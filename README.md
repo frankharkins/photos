@@ -12,21 +12,19 @@ elm make src/Main.elm --output=static/main.js
 Or, rebuild on file change:
 
 ```sh
-while inotifywait -e close_write src/Main.elm; do elm make src/Main.elm --output=static/main.js; done
+while inotifywait -e close_write src/*; do elm make src/Main.elm --output=static/main.js; done
 ```
 
-## Add files to the page.
+## Add files to the page
 
 1. Export as AVIF from Darktable
 2. Run from root of repo:
    ```sh
    ./import-image.sh <path-to-file>
    ```
-3. Add new entry in `src/Main.elm`
+3. Add new entry in `src/Data.elm`
 
 
 ## To do
 
 * Accessibility / keyboard navigation
-* Look into progressive encoding JPEG for the medium/high res images.
-* Clean up Elm code

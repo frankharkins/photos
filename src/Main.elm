@@ -1,11 +1,11 @@
 module Main exposing (main)
 
+import Set
 import Browser
 import Html exposing (Html, h1, p, div, span, text, img, figure, figcaption)
 import Html.Events exposing (onClick)
 import Html.Attributes exposing (class, id, src, tabindex)
-import Html.Events exposing (onMouseEnter, onMouseLeave, onClick)
-import Html.Events exposing (stopPropagationOn)
+import Html.Events exposing (onMouseEnter, onMouseLeave, onClick, on, stopPropagationOn)
 import Json.Decode as Json
 
 import ImageUtils exposing (..)
@@ -25,13 +25,15 @@ main =
 -- 1. None: Page appears as it does on load
 -- 2. HoveredImage: User's cursor is hovered over a thumbnail
 -- 3. ModalImage: A full-window image modal is open
-type Model =
+type PageState =
   None
   | HoveredImage Image
   | ModalImage Image
 
+type alias Model = { state: PageState, loaded_images: Set.Set String }
+
 init : Model
-init = None
+init = { state = None, loaded_images = Set.empty }
 
 
 -- UPDATE
@@ -39,6 +41,7 @@ type Msg =
   EnterHover Image
   | ExitHover
   | EnterModal Image
+  | ModalLoaded String
   | NextModal
   | PreviousModal
   | ExitModal
@@ -49,31 +52,33 @@ update msg model =
   case msg of
     DoNothing -> model
     EnterHover image ->
-      case model of
+      case model.state of
         ModalImage _ -> model
-        _ -> HoveredImage image
-    EnterModal image -> ModalImage image
+        _ -> { model | state = HoveredImage image }
+    EnterModal image -> { model | state = ModalImage image }
+    ModalLoaded filename ->
+      { model | loaded_images = (Set.insert filename model.loaded_images)}
     PreviousModal ->
-      case model of
+      case model.state of
         ModalImage image ->
           case (get_sibling image all_images Previous) of
-            Nothing -> ModalImage image
-            Just new_image -> ModalImage new_image
+            Nothing -> { model | state = ModalImage image }
+            Just new_image -> { model | state = ModalImage new_image }
         _ -> model
     NextModal ->
-      case model of
+      case model.state of
         ModalImage image ->
           case (get_sibling image all_images Next) of
-            Nothing -> ModalImage image
-            Just new_image -> ModalImage new_image
+            Nothing -> { model | state = ModalImage image }
+            Just new_image -> { model | state = ModalImage new_image }
         _ -> model
     ExitHover ->
-      case model of
-        HoveredImage _ -> None
+      case model.state of
+        HoveredImage _ -> { model | state = None }
         _ -> model
     ExitModal ->
-      case model of
-        ModalImage _ -> None
+      case model.state of
+        ModalImage _ -> { model | state = None }
         _ -> model
 
 -- VIEW
@@ -109,8 +114,8 @@ render_image_group selected_image group =
   ]
 
 image_name_if_hovered : Model -> ImageGroup -> List (Html Msg)
-image_name_if_hovered selected_image group =
-  case selected_image of
+image_name_if_hovered model group =
+  case model.state of
     HoveredImage image ->
       if image.group == group.name then
         [ div [ class "text-secondary" ] [ text image.title ] ]
@@ -122,20 +127,25 @@ image_name_if_hovered selected_image group =
       []
 
 image_modal : Model -> List (Html Msg)
-image_modal selected_image =
-  case selected_image of
+image_modal model =
+  case model.state of
     None -> []
     HoveredImage _ -> []
-    ModalImage image -> [
-      div [ class "image-modal", onClick ExitModal ] [
-        figure [ onClickNoPropogation DoNothing ] [
-          img [ src (get_image_path "full-res" image.filename) ] [ ],
-          figcaption [] [
-            text image.title,
-            div [ class "text-secondary" ] [ text image.description ]
-          ],
-          modal_nav image
-      ]]]
+    ModalImage image ->
+      let image_folder = if Set.member image.filename model.loaded_images then "full-res" else "thumbnails"
+      in [
+        div [ class "image-modal", class image_folder, onClick ExitModal ] [
+          figure [ onClickNoPropogation DoNothing ] [
+            img [
+              src (get_image_path image_folder image.filename)
+              , onImageLoad (ModalLoaded image.filename)
+            ] [ ],
+            figcaption [] [
+              text image.title,
+              div [ class "text-secondary" ] [ text image.description ]
+            ],
+            modal_nav image
+        ]]]
 
 modal_nav : Image -> Html Msg
 modal_nav image =
@@ -155,3 +165,7 @@ modal_nav image =
 onClickNoPropogation : Msg -> Html.Attribute Msg
 onClickNoPropogation msg =
   stopPropagationOn "click" (Json.map (\m -> (m, True)) (Json.succeed msg))
+
+onImageLoad : Msg -> Html.Attribute Msg
+onImageLoad msg =
+  on "load" (Json.succeed msg)

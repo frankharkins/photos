@@ -140,6 +140,11 @@ div.image-modal figure img {
     margin: 0 auto;
 }
 
+div.image-modal.thumbnail figure img {
+   width: calc(min(90vw, 1800px));
+   height: calc(min(calc(90vh - 7lh), 1800px));
+}
+
 div.image-modal figure figcaption {
     margin-top: 1rem;
     height: 3lh;

@@ -43,6 +43,40 @@ image_groups = [
       }
     ]
   },
+  { name = "Bypass",
+    description = "Long exposures of Poynton bypass in the fog",
+    images = [
+      { filename = "bypass-1",
+        title = "#1",
+        description = ""
+      },
+      { filename = "bypass-2",
+        title = "#2",
+        description = ""
+      },
+      { filename = "bypass-3",
+        title = "#3",
+        description = ""
+      }
+    ]
+  },
+  { name = "Rocks reflecting",
+    description = "Rocks reflected in water in the Lake District",
+    images = [
+      { filename = "rocks-reflecting-1",
+        title = "#1",
+        description = "Grasmere, Lake District"
+      },
+      { filename = "rocks-reflecting-2",
+        title = "#2",
+        description = "Grasmere, Lake District"
+      },
+      { filename = "rocks-reflecting-3",
+        title = "#3",
+        description = "Rydal Water, Lake District"
+      }
+    ]
+  },
   { name = "South West Coast Path",
     description = "Snaps from various holiday along the South West Coast Path",
     images = [
@@ -65,23 +99,6 @@ image_groups = [
       { filename = "telescope",
         title = "Telescope in Ilfracombe",
         description = "Overlooking Lantern Hill Lighthouse"
-      }
-    ]
-  },
-  { name = "Rocks reflecting",
-    description = "Rocks reflected in water in the Lake District",
-    images = [
-      { filename = "rocks-reflecting-1",
-        title = "#1",
-        description = "Grasmere, Lake District"
-      },
-      { filename = "rocks-reflecting-2",
-        title = "#2",
-        description = "Grasmere, Lake District"
-      },
-      { filename = "rocks-reflecting-3",
-        title = "#3",
-        description = "Rydal Water, Lake District"
       }
     ]
   },

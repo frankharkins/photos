@@ -5,6 +5,19 @@ import ImageUtils exposing (ImageGroup)
 image_groups: List ImageGroup
 -- Insert new files here, along with their description
 image_groups = [
+  { name = "Ennerdale",
+    description = "Some photos from Ennerdale water",
+    images = [
+      { filename = "ennerdale-star-trails",
+        title = "Ennerdale at night",
+        description = "A 40-minute exposure of the lake, stars create streaks in the sky due to the rotation of the Earth."
+      },
+      { filename = "ennerdale-water",
+        title = "Tree at Ennerdale water",
+        description = "On a wet afternoon in January"
+      }
+    ]
+  },
   { name = "Durdle Door",
     description = "Photos taken from around Durdle Door",
     images = [

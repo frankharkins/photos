@@ -132,6 +132,10 @@ div.image-modal figure {
     }
 }
 
+div.image-modal figure {
+    width: min-content;
+}
+
 div.image-modal figure img {
     max-width: 90vw;
     max-height: calc(90vh - 7lh);
@@ -147,7 +151,7 @@ div.image-modal.thumbnail figure img {
 
 div.image-modal figure figcaption {
     margin-top: 1rem;
-    height: 3lh;
+    min-height: 3lh;
 }
 
 div.image-modal figure .modal-nav span:is(.next,.close,.previous):hover {
